@@ -1,0 +1,32 @@
+--- src/h-system.h	Fri Jan 16 04:26:28 1970
++++ src/h-system.h	Fri Jan 16 04:26:28 1970
+@@ -18,7 +18,7 @@
+ #include <ctype.h>
+ #include <errno.h>
+ 
+-#if defined(NeXT)
++#if defined(NeXT) 
+ # include <libc.h>
+ #else
+ # include <stdlib.h>
+@@ -56,7 +56,7 @@
+ #endif
+ 
+ #if !defined(MACINTOSH) && !defined(AMIGA) && \
+-    !defined(RISCOS) && !defined(VM) && !defined(__MWERKS__)
++    !defined(RISCOS) && !defined(VM) && !defined(__MWERKS__) && !defined(__GNUC__)
+ # if defined(__TURBOC__) || defined(__WATCOMC__)
+ #  include <mem.h>
+ # else
+ 
+ 
+ 
+ @@ -2086,7 +2086,7 @@
+ 		safe_setuid_drop();
+ 
+ 		/* Dump a line of info */
+-		fprintf(fkk, "Lock file for savefile '%s'\n", savefile);
++		//fprintf(fkk, "Lock file for savefile '%s'\n", savefile);
+ 
+ 		/* Close the lock file */
+ 		my_fclose(fkk);

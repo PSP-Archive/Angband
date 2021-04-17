@@ -1,0 +1,38 @@
+# File: Makefile.psp
+
+# Purpose: Makefile for Sony Playstation Portable, v3
+#           To be used with "Minimalist PSPSDK" (http://sourceforge.net/projects/minpspw/)
+
+include Makefile.src
+
+OBJS = main-psp.o $(ZFILES) $(ANGFILES)
+  
+CFLAGS = -O2 -G0 -fno-strength-reduce -Wall -D"USE_PSP" -I$(PSPSDK)/include
+LDFLAGS = -L$(PSPSDK)/lib
+
+DEFAULT_RULE = 3xx
+TARGET_ARCHITECTURE = psp
+PSP_FW_VERSION=371
+BUILD_PRX = 1
+LIBS = -lpspdebug -lpspdisplay -lpspge -lpsppower -lpspctrl -lstdc++ -lc -lpspuser -lpspkernel
+
+TARGET = angband
+TARGET_CAPS = ANGBAND
+VERSION = 3.0.6.4
+PSP_EBOOT_TITLE = $(TARGET)
+PSP_EBOOT_SFO = PARAM.SFO
+PSP_EBOOT_ICON = ..\imgs\angband_icon.png
+PSP_EBOOT_ICON1 = NULL
+PSP_EBOOT_UNKPNG = NULL
+PSP_EBOOT_PIC1 = ..\imgs\angband.png
+PSP_EBOOT_SND0 = NULL
+PSP_EBOOT_PSAR = NULL
+PSP_EBOOT = EBOOT.PBP
+
+EXTRA_TARGETS = EBOOT.PBP
+
+RELEASE_DIR = $(TARGET)_$(VERSION)
+
+PSPSDK=$(shell psp-config --pspsdk-path)
+
+include $(PSPSDK)/lib/build.mak
